@@ -1,4 +1,5 @@
 import React from 'react';
+import getAuthorization from '../utils/getAuthorization';
 
 function AccountForm() {
 
@@ -13,8 +14,11 @@ function AccountForm() {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const json = await getAuthorization({ username: username, password: password });
+    sessionStorage.setItem('jwt', json.accessToken);
+    console.log(sessionStorage.getItem('jwt'));
   };
 
   return (

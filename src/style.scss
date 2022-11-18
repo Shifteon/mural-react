@@ -1,0 +1,301 @@
+body {
+    margin: 0;
+    background-color: #ECECEC;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes slideUp {
+    from { height: 5000px; bottom: 0; left: 5%; position: absolute; }
+    to   { height: fit-content; position: relative; }
+}
+
+@keyframes grow {
+    from { width: 0%; height: 0%; }
+    to   { width: 90%; height: 19%; }
+}
+
+@keyframes fadeIn {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.single-artwork {
+    padding: 1em;
+    margin: 1em;
+    border-radius: .5em;
+    background-color: white;
+    position: relative;
+    color: white;
+    img {
+        width: 100%;
+        // filter: brightness(80%);
+    }
+    div {
+        position: absolute;
+        bottom: 1%;
+        left: 5%;
+        width: 0%;
+        height: 0%;
+        border-radius: .5em;
+        background-color: #4D9DE0;
+
+        &.display {
+            display: block;
+            width: 90%;
+            height: 19%;
+            animation-name: grow;
+            animation-duration: .5s;
+            animation-direction: alternate;
+        }
+    }
+    h1 {
+        padding-left: 10px;
+        margin-bottom: 2px;
+        margin-top: 10px;
+        z-index: 12;
+        filter: brightness(100%);
+        display: none;
+        
+        &.display {
+            display: block;
+            animation: fadeIn 1s;
+        }
+    }
+    p {
+        padding-left: 15px;
+        margin: 0.25em;
+        font-size: 1.25em;
+        z-index: 12;
+        display: none;
+
+        &.display {
+            display: block;
+            animation: fadeIn 1s;
+        }
+    }
+}
+
+.artwork-panel {
+    width: 90%;
+    margin: 1em auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    // animation-name: slideUp;
+    // animation-duration: 1s;
+    // animation-delay: 2s;
+}
+
+form {
+    color: rgb(100, 100, 100);
+    display: grid;
+    width: 25%;
+    margin: 1em auto;
+    padding: 1.5em;
+    border-radius: .5em;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    align-self: center;
+    grid-row: 1/3;
+    grid-column: 1/-1;
+
+    input {
+        border-radius: .25em;
+        border: 1.5px solid lightgray;
+        padding: .25em;
+        margin: 1em;
+        margin-left: 0;
+        margin-top: .25em;
+        box-shadow: 3px 3px 3px lightgray;
+        font-size: 1em;
+        // width: 50%;
+        // justify-self: center;
+    }
+    label {
+        font-weight: 500;
+        font-size: 1.75em;
+        display: grid;
+
+        &:first-of-type {
+            margin-top: 1em;
+        }
+    }
+    button {
+        justify-self: center;
+        width: 70%;
+        font-size: 1.5em;
+    }
+}
+
+button {
+    width: 7em;
+    padding: 1em;
+    color: white;
+    background-color: #1A936F;
+    border: none;
+    border-radius: .5em;
+    cursor: pointer;
+    transition: all .25s;
+
+    &:hover {
+        background-color: #91c779;
+        // color: #E56DB1;
+        color: #306BAC;
+    }
+}
+
+.bg-login {
+    // background-image: url('../public/images/background.jpg');
+    background-image: url('../public/images/pink-background.webp');
+    filter: blur(2px);
+    height: 100%;
+    width: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    grid-row: 1/-1;
+    grid-column: 1/-1;
+
+    z-index: -1;
+}
+
+.login-page, .signup-page {
+    // width: 100%;
+    min-height: 91vh;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    // background-color: #F7D3E8;
+    // background-color: #F7D3E8;
+
+    img {
+        margin-top: 1em;
+        justify-self: center;
+        width: 100%;
+        // grid-column: 1/-1;
+        // grid-row: 1/2;
+    }
+}
+
+.bg-prompt {
+    background-image: url('../public/images/mural-banner.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    z-index: -1;
+    grid-row: 1/-1;
+    grid-column: 1/-1;
+    border-radius: .5em;
+}
+
+.prompt {
+    width: 90%;
+    margin: 1em auto;
+    // text-align: center;
+    display: grid;
+    height: 500px;
+    border-radius: .5em;
+    color: white;
+
+    div {
+        grid-row: 1/-1;
+        grid-column: 1/-1;
+    }
+
+    .prompt-content {
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        background-color: #4D9DE0;
+        border-radius: .5em;
+
+        h1 {
+            font-size: 4em;
+            margin-bottom: 0;
+            margin-left: .5em;
+        }
+
+        h2 {
+            font-size: 3em;
+            margin-top: 0;
+            margin-left: 1em;
+        }
+
+        h1, h2 {
+            grid-column: 1/2;
+        }
+
+        button {
+            grid-column: 2/3;
+            grid-row: 3/4;
+            justify-self: end;
+            align-self: end;
+            margin-right: 10%;
+            margin-bottom: 5%;
+            height: 40%;
+            width: 30%;
+            // padding: 1.25em;
+            background-color: #91c779;
+            font-size: 1.5em;
+        }
+    }
+}
+
+nav {
+    background-color: white;
+    box-shadow: 3px 3px 3px lightgray;
+    height: 85px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    z-index: 12;
+
+    a {
+        text-decoration: none;
+        align-self: center;
+        margin-left: 1em;
+        font-size: 2em;
+        font-weight: 600;
+    }
+}
+
+a {
+    color: #306BAC;
+}
+
+.nav-profile {
+    justify-self: end;
+    align-self: center;
+    position: relative;
+    width: 100%;
+    text-align: right;
+
+
+    .profile-pic {
+        color: #7768AE;
+        font-size: 4em;
+        margin-right: .5em;
+        cursor: pointer;
+    }
+
+    div {
+        position: absolute;
+        right: 1em;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        background-color: #E1BC29;
+        border-radius: .5em;
+        width: 30%;
+        text-align: left;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+        a {
+            margin: 0;
+            padding: .25em;
+            color: white;
+        }
+    }
+}
