@@ -4,6 +4,8 @@ import Navbar from './components/navbar';
 import { Home } from './pages/home';
 import SignUp from './pages/signUp';
 import Login from './pages/login';
+import { Logout } from './pages/logout';
+import { Profile } from './pages/profile';
 import './style.scss';
 
 
@@ -20,6 +22,8 @@ function App() {
         <Route exact path='/' element={<Home />} />
         <Route path='/signUp' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/logout' element={<Logout />} />
+        <Route path='/profile' element={<Profile />} />
     </Routes>
     </Router>
   )

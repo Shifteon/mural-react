@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const Nav = styled.nav`
   background-color: white;
   box-shadow: 3px 3px 3px lightgray;
-  height: 85px;
+  height: 75px;
   display: grid;
   z-index: 12;
 `;

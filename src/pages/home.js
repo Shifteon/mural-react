@@ -6,7 +6,7 @@ import { Prompt } from '../components/prompt';
 import { baseRequestUrl } from "../constants";
 
 export const Home = () => {
-  const [cookies, setCookie] = useCookies(['user']);
+  const [cookies, setCookie] = useCookies(['accessToken']);
 
   const requestUrl = baseRequestUrl + 'prompt/1062022';
   const accessToken = cookies.accessToken;

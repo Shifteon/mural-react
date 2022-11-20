@@ -23,7 +23,7 @@ export const Prompt = () => {
 
   return (
     <div className="prompt">
-      {/* <div className="bg-prompt"></div> */}
+      <div className="bg-prompt"></div>
       <div className="prompt-content">
         <h1>Today's Prompt</h1>
         <h2>{prompt}</h2>

@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { baseRequestUrl } from "../constants";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const requestUrl = `${baseRequestUrl}auth/signup`;
@@ -11,6 +12,8 @@ const SignUp = () => {
   const [name, setName]             = React.useState("");
   const [bio, setBio]               = React.useState("");
   const [profilePic, setProfilePic] = React.useState();
+
+  const navigate = useNavigate();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -54,6 +57,7 @@ const SignUp = () => {
     })
       .then(response => {
         console.log(response);
+        navigate('/login');
       })
       .catch(error => {
         console.log(error);
@@ -63,37 +67,43 @@ const SignUp = () => {
   return (
     <div className="signup-page">
       <div className="bg-login"></div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='signup-form' >
         <img src="/images/mural-logo-stacked.png" />
-        <label for="email">
-          Email
-        </label>
-        <input type="text" name="email" value={email} onChange={handleEmailChange} />
-        <label>
-          Username
+        <h2>Account Info</h2>
+        <div>
+          <label for="email">
+            Email
+          </label>
+          <input type="text" name="email" value={email} onChange={handleEmailChange} />
+          <label>
+            Username
+            
+          </label>
+          <input type="text" value={username} onChange={handleUsernameChange} />
+          <label>
+            Password
+            
+          </label>
+          <input type="password" value={password}  onChange={handlePasswordChange} />
+        </div>
+        <h2>Profile Info</h2>
+        <div>
+          <label>
+            Name
+            
+          </label>
+          <input type="text" value={name}  onChange={handleNameChange} />
+          <label>
+            Bio
+            
+          </label>
+          <input type="text" value={bio}  onChange={handleBioChange} />
+          <label>
+            Profile Picture
           
-        </label>
-        <input type="text" value={username} onChange={handleUsernameChange} />
-        <label>
-          Password
-          
-        </label>
-        <input type="password" value={password}  onChange={handlePasswordChange} />
-        <label>
-          Name
-          
-        </label>
-        <input type="text" value={name}  onChange={handleNameChange} />
-        <label>
-          Bio
-          
-        </label>
-        <input type="text" value={bio}  onChange={handleBioChange} />
-        <label>
-          Profile Picture
-        
-        </label>
-        <input type="file" name="profilePic" onChange={handleProfilePicChange} />
+          </label>
+          <input type="file" name="profilePic" onChange={handleProfilePicChange} />
+        </div>
         {/* <input type="submit" value="Submit" /> */}
         <button type="submit" >Signup</button>
       </form>

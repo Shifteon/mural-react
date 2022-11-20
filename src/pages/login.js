@@ -4,7 +4,7 @@ import { useCookies } from "react-cookie";
 import getAuthorization from "../utils/getAuthorization";
 
 const Login = () => {
-  const [cookies, setCookie] = useCookies(['user']);
+  const [cookies, setCookie] = useCookies(["loggedIn", "accessToken", "currentUser"]);
 
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -28,11 +28,16 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const json = await getAuthorization({ username: username, password: password });
+    console.log(json);
     setCookie('accessToken', json.accessToken, {
       path: '/',
       maxAge: 3600
     });
     setCookie('loggedIn', true, {
+      path: '/',
+      maxAge: 3600
+    });
+    setCookie('currentUser', json.user, {
       path: '/',
       maxAge: 3600
     });
