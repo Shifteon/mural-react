@@ -2,6 +2,8 @@ import React from "react";
 import { redirect, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import getAuthorization from "../utils/getAuthorization";
+import { Store } from 'react-notifications-component';
+import { notificationOptions } from "../constants";
 
 const Login = () => {
   const [cookies, setCookie] = useCookies(["loggedIn", "accessToken", "currentUser"]);
@@ -40,6 +42,12 @@ const Login = () => {
     setCookie('currentUser', json.user, {
       path: '/',
       maxAge: 3600
+    });
+
+    Store.addNotification({
+      ...notificationOptions,
+      title: "Succesfully Logged In",
+      type: "success"
     });
 
     navigate("/");

@@ -19,7 +19,13 @@ function Navbar() {
     if (cookies.loggedIn) {
       getProfilePicUrl();
     }
-  }, [])
+  }, []);
+
+  React.useEffect(() => {
+    if (cookies.loggedIn) {
+      getProfilePicUrl();
+    }
+  }, [cookies.loggedIn]);
 
   const wrapperRef = React.useRef(null);
   useOutsideClick(wrapperRef, () => {

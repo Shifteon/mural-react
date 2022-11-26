@@ -8,17 +8,19 @@ import { baseRequestUrl } from "../constants";
 export const Home = () => {
   const [cookies, setCookie] = useCookies(['accessToken']);
 
-  const requestUrl = baseRequestUrl + 'prompt/1062022';
+  const requestUrl = baseRequestUrl + 'prompt/';
   const accessToken = cookies.accessToken;
 
   const [artwork, setArtwork] = React.useState([]);
+  const [noArtwork, setNoArtwork] = React.useState(true);
 
   React.useEffect(() => {
     getArtwork();
   }, []);
 
   const getArtwork = () => {
-    axios.get(requestUrl, {
+    console.log(sessionStorage.getItem('promptDate'));
+    axios.get(requestUrl + sessionStorage.getItem('promptDate'), {
       headers: {
         'Authorization': `Bearer ${accessToken}`
       }
@@ -26,18 +28,22 @@ export const Home = () => {
       .then(result => {
         console.log(result.data);
         setArtwork(result.data.artwork);  
+        setNoArtwork(false);
       })
       .catch(error => {
-        console.log('error');
+        console.log(error);
       });
   };
 
   return (
     <div>
       <div>
-        <Prompt />
+        <Prompt newArtwork={getArtwork} />
       </div>
       <div>
+        {noArtwork &&
+          <h1 className="no-artwork" >No Artwork yet... Be the first to add some!</h1>
+        }
         <ArtworkPanel artwork={artwork} />
       </div>
     </div>

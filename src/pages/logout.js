@@ -2,7 +2,8 @@ import axios from "axios";
 import React from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import { baseRequestUrl } from "../constants";
+import { baseRequestUrl, notificationOptions } from "../constants";
+import { Store } from 'react-notifications-component';
 
 
 export const Logout = () => {
@@ -21,6 +22,11 @@ export const Logout = () => {
     .then(result => {
       removeCookie("loggedIn", { path: "/", maxAge: 3600 });
       removeCookie("accessToken", { path: "/", maxAge: 3600 });
+      Store.addNotification({
+        ...notificationOptions,
+        title: "Succesfully Logged Out",
+        type: "success"
+      });
       navigate("/");
     })
     .catch(error => {

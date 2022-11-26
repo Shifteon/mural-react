@@ -11,7 +11,7 @@ body {
 
 @keyframes grow {
     from { width: 0%; height: 0%; }
-    to   { width: 90%; height: 30%; }
+    to   { width: 90%; height: 24%; }
 }
 
 @keyframes fadeIn {
@@ -30,14 +30,17 @@ html, body, #root {
     background-color: white;
     position: relative;
     color: white;
-    min-height: 300px;
-    max-height: 400px;
+    // min-height: 300px;
+    // max-height: 400px;
+    height: 400px;
     overflow: hidden;
     display: grid;
     // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     img {
         width: 100%;
+        height: 100%;
         align-self: center;
+        object-fit: cover;
         // filter: brightness(80%);
     }
     div {
@@ -52,7 +55,7 @@ html, body, #root {
         &.display {
             display: block;
             width: 90%;
-            height: 30%;
+            height: 24%;
             animation-name: grow;
             animation-duration: .5s;
             animation-direction: alternate;
@@ -85,6 +88,11 @@ html, body, #root {
             animation: fadeIn 1s;
         }
     }
+}
+
+.no-artwork {
+    margin: 1em auto;
+    width: fit-content;
 }
 
 .artwork-panel {
@@ -154,7 +162,7 @@ form {
     label {
         font-weight: 500;
         font-size: 1.75em;
-        display: grid;
+        // display: grid;
 
         &:first-of-type {
             margin-top: 1em;
@@ -180,7 +188,6 @@ button {
     &:hover {
         background-color: #91c779;
         // color: #E56DB1;
-        color: #306BAC;
     }
 }
 
@@ -272,7 +279,7 @@ button {
             grid-column: 1/2;
         }
 
-        button {
+        .artwork-form-show-btn {
             grid-column: 2/3;
             grid-row: 3/4;
             justify-self: end;
@@ -410,6 +417,10 @@ a {
             margin-right: .5em;
             border-bottom: 3px solid #7768AE;
         }
+
+        .single-artwork {
+            height: 300px;
+        }
     }
 
     .info {
@@ -438,7 +449,7 @@ a {
                 font-size: 1.25em;
             }
 
-            button {
+            .artwork-form-show-btn {
                 margin-top: 20%;
                 width: 70%;
                 margin: 20% auto;
@@ -455,6 +466,40 @@ a {
             background-color: white;
             margin: .5em auto;
             display: block;
+        }
+    }
+}
+
+.artwork-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.24);
+    z-index: 1000;
+
+    form {
+        width: 40%;
+        margin: 3em auto;
+        // max-height: 500px;
+        display: grid;
+        grid-template-columns: 1fr;
+
+        input {
+            padding: .5em;
+            width: 90%;
+            grid-column: 1/-1;
+        }
+
+        label {
+            grid-column: 1/-1;
+        }
+
+        .artwork-form-btn {
+            width: 40%;
+            margin-top: .5em;
+            grid-column: 1/-1;
         }
     }
 }

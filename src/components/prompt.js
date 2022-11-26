@@ -1,9 +1,13 @@
 import axios from "axios";
 import React from "react";
 import { baseRequestUrl } from "../constants";
+import { ArtworkFormModal } from "./artworkFormModal";
+import { useCookies } from "react-cookie";
 
-export const Prompt = () => {
+export const Prompt = ({newArtwork}) => {
   const requestUrl = baseRequestUrl + 'prompt/';
+
+  const [cookies] = useCookies();
 
   const [prompt, setPrompt] = React.useState("Pirates in a shopping mall");
   
@@ -12,9 +16,15 @@ export const Prompt = () => {
   }, []);
 
   const getPrompt = () => {
-    axios.get(requestUrl)
+    axios.get(requestUrl, {
+      headers: {
+        'Authorization': `Bearer ${cookies.accessToken}`
+      }
+    })
       .then(result => {
         console.log(result.data.prompt);
+        sessionStorage.setItem('promptDate', result.data.prompt.date);
+        setPrompt(result.data.prompt.prompt);
       })
       .catch(error => {
         console.log(error);
@@ -27,7 +37,7 @@ export const Prompt = () => {
       <div className="prompt-content">
         <h1>Today's Prompt</h1>
         <h2>{prompt}</h2>
-        <button>Add Artwork</button>
+        <ArtworkFormModal fromPrompt={true} newArtwork={newArtwork} />
       </div>
     </div>
   );
