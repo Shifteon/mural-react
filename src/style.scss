@@ -41,7 +41,11 @@ html, body, #root {
         height: 100%;
         align-self: center;
         object-fit: cover;
+        cursor: pointer;
         // filter: brightness(80%);
+    }
+    p {
+        display: none;
     }
     div {
         position: absolute;
@@ -90,6 +94,41 @@ html, body, #root {
     }
 }
 
+.full-image {
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    width: 50%;
+    margin: 0 auto;
+    background-color: white;
+    z-index: 1000;
+    padding: 1em;
+    border-radius: .5em;
+
+    img {
+        width: 100%;
+    }
+
+    .text {
+        display: grid;
+        h1 {
+            border-bottom: 2px solid black;
+            grid-column: 1/2;
+            // grid-row: 1/2;
+        }
+
+        p {
+            font-size: 1.5em;
+        }
+    
+        a {
+            // grid-column: 2/3;
+            grid-row: 1/2;
+            // align-self: center;
+        }
+    }
+}
+
 .no-artwork {
     margin: 1em auto;
     width: fit-content;
@@ -121,8 +160,12 @@ form {
 
     &.signup-form {
         // grid-template-columns: 1fr 1fr;
-        width: fit-content;
+        width: 30%;
+        grid-row: 1/2;
         // justify-items: center;
+        div {
+            display: grid;
+        }
 
         h2 {
             border-bottom: 3px solid #1A936F;
