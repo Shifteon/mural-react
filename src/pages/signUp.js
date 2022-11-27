@@ -15,6 +15,8 @@ const SignUp = () => {
   const [bio, setBio]               = React.useState("");
   const [profilePic, setProfilePic] = React.useState();
 
+  const usernameRef = React.useRef();
+
   const navigate = useNavigate();
 
   const handleUsernameChange = (event) => {
@@ -68,11 +70,18 @@ const SignUp = () => {
       })
       .catch(error => {
         console.log(error);
-        Store.addNotification({
-          ...notificationOptions,
-          title: "Error Creating Account",
-          type: "danger"
-        });
+        const errors = error.response.data.data;
+        for (const e of errors) {
+          if (e.param == 'username') {
+            usernameRef.current.style = `border-color: red;`
+          }
+          Store.addNotification({
+            ...notificationOptions,
+            title: "Error Creating Account",
+            message: `${e.msg}`,
+            type: "danger"
+          });
+        }
       })
   };
 
@@ -91,12 +100,12 @@ const SignUp = () => {
             Username
             
           </label>
-          <input required type="text" value={username} onChange={handleUsernameChange} />
+          <input required type="text" value={username} onChange={handleUsernameChange} ref={usernameRef} />
           <label>
             Password
             
           </label>
-          <input required type="password" value={password}  onChange={handlePasswordChange} />
+          <input required type="password" value={password} onChange={handlePasswordChange} />
         </div>
         <h2>Profile Info</h2>
         <div>
