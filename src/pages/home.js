@@ -4,9 +4,10 @@ import { useCookies } from "react-cookie";
 import { ArtworkPanel } from "../components/artworkPanel";
 import { Prompt } from '../components/prompt';
 import { baseRequestUrl } from "../constants";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
-  const [cookies, setCookie] = useCookies(['accessToken']);
+  const [cookies, setCookie] = useCookies(['loggedIn']);
 
   const requestUrl = baseRequestUrl + 'prompt/';
   const accessToken = cookies.accessToken;
@@ -18,9 +19,10 @@ export const Home = () => {
     getArtwork();
   }, []);
 
-  const getArtwork = () => {
+  const getArtwork = (promptDate = null) => {
     console.log(sessionStorage.getItem('promptDate'));
-    axios.get(requestUrl + sessionStorage.getItem('promptDate'), {
+    const dateKey = promptDate || sessionStorage.getItem('promptDate')
+    axios.get(requestUrl + dateKey, {
       headers: {
         'Authorization': `Bearer ${accessToken}`
       }
@@ -32,20 +34,33 @@ export const Home = () => {
       })
       .catch(error => {
         console.log(error);
+        setArtwork([]);
+        setNoArtwork(true);
       });
   };
 
   return (
     <div>
-      <div>
-        <Prompt newArtwork={getArtwork} />
-      </div>
-      <div>
-        {noArtwork &&
-          <h1 className="no-artwork" >No Artwork yet... Be the first to add some!</h1>
-        }
-        <ArtworkPanel artwork={artwork} />
-      </div>
+    {cookies.loggedIn ?
+      <>
+        <div>
+          <Prompt newArtwork={getArtwork} />
+        </div>
+        <div>
+          {noArtwork &&
+            <h1 className="no-artwork" >No Artwork yet... Be the first to add some!</h1>
+          }
+          <ArtworkPanel artwork={artwork} />
+        </div>
+      </>
+      :
+      <>
+        <h1 className="center" >Please login to see todays prompt</h1>
+        <Link className="center" to="/login">Login</Link>
+        <h2 className="center" >Or create an account</h2>
+        <Link className="center" to="/signUp">Create Account</Link>
+      </>
+    }
     </div>
   );
 };

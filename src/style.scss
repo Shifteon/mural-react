@@ -23,6 +23,16 @@ html, body, #root {
     height: 100%;
 }
 
+.center {
+    text-align: center;
+}
+
+a {
+    &.center {
+        display: block;
+    }
+}
+
 .single-artwork {
     padding: 1em;
     margin: 1em;
@@ -143,6 +153,10 @@ html, body, #root {
     // animation-name: slideUp;
     // animation-duration: 1s;
     // animation-delay: 2s;
+
+    @media only screen and (max-width: 1300px) {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 form {
@@ -325,6 +339,20 @@ button {
 
         h1, h2 {
             grid-column: 1/2;
+        }
+
+        .select {
+            grid-column: 1/2;
+            grid-row: 3/4;
+            width: 50%;
+            // justify-self: center;
+            align-self: end;
+            margin-left: 1em;
+            margin-bottom: 1em;
+
+            .prompt-select {
+                color: black;
+            }
         }
 
         .artwork-form-show-btn {

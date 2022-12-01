@@ -1,6 +1,7 @@
+import { baseRequestUrl } from "../constants";
 
 async function getAuthorization(body) {
-  const url = 'http://localhost:8080/auth/login';
+  const url = baseRequestUrl + 'auth/login';
 
   console.log(body);
 
