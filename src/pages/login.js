@@ -1,5 +1,5 @@
 import React from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import getAuthorization from "../utils/getAuthorization";
 import { Store } from 'react-notifications-component';
@@ -31,6 +31,17 @@ const Login = () => {
     event.preventDefault();
     const json = await getAuthorization({ username: username, password: password });
     console.log(json);
+    console.log(json);
+    if (!isNaN(json)) {
+      if (json === 422) {
+        Store.addNotification({
+          ...notificationOptions,
+          title: "Username or Password is Incorrect",
+          type: "danger"
+        });
+      }
+      return;
+    }
     setCookie('accessToken', json.accessToken, {
       path: '/',
       maxAge: 3600
@@ -56,18 +67,19 @@ const Login = () => {
   return (
     <div className="login-page">
       <div className="bg-login"></div>
-      <form onSubmit={handleSubmit}>
+      <form className="login-form" onSubmit={handleSubmit}>
         <img src="/images/mural-logo-stacked.png" />
         <label>
           Username
-          <input type="text" value={username} onChange={handleUsernameChange} />
+          <input required type="text" value={username} onChange={handleUsernameChange} />
         </label>
         <label>
           Password
-          <input type="password" value={password}  onChange={handlePasswordChange} />
+          <input required type="password" value={password} minlength="8" onChange={handlePasswordChange} />
         </label>
         {/* <input type="submit" value="Submit" /> */}
         <button type="submit">Login</button>
+        <Link to="/signup">Create Account</Link>
       </form>
     </div>
   );

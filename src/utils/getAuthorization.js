@@ -15,6 +15,8 @@ async function getAuthorization(body) {
 
   if (response.status == 200) {
     return response.json();
+  } else {
+    return response.status;
   }
 }
 
