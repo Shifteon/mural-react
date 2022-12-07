@@ -87,7 +87,7 @@ const SignUp = () => {
 
   return (
     <div className="signup-page">
-      <div className="bg-login"></div>
+      <div className="bg-signup"></div>
       <form onSubmit={handleSubmit} className='signup-form' >
         <img src="/images/mural-logo-stacked.png" />
         <h2>Account Info</h2>

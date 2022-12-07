@@ -140,8 +140,18 @@ a {
 }
 
 .no-artwork {
-    margin: 1em auto;
-    width: fit-content;
+
+    img {
+        width: 20%;
+        margin: 0 auto;
+        display: block;
+    }
+
+    h1 {
+        margin: 1em auto;
+        width: fit-content;
+        text-align: center;
+    }
 }
 
 .artwork-panel {
@@ -254,12 +264,22 @@ button {
     }
 }
 
-.bg-login {
+// .login-page {
+//     grid-template-rows: 1fr 1fr 1fr;
+
+//     form {
+//         grid-column: 1/-1;
+//         grid-row: 2/-1;
+//         margin-top: 0;
+//     }
+// }
+
+.bg-signup, .bg-login {
     // background-image: url('../public/images/background.jpg');
-    // background-image: url('../public/images/background.jpg');
-    filter: blur(2px);
+    background-image: url('../public/images/snorlax.png');
+    // filter: blur(2px);
     height: 100%;
-    width: 100%;
+    width: 50%;
 
     /* Center and scale the image nicely */
     background-position: center;
@@ -267,7 +287,7 @@ button {
     background-size: cover;
 
     grid-row: 1/-1;
-    grid-column: 1/-1;
+    grid-column: 1/2;
 
     z-index: -1;
 }
@@ -278,7 +298,7 @@ button {
     height: 100%;
     display: grid;
     grid-template-rows: 1fr 1fr;
-    background-color: #306BAC;
+    // background-color: #306BAC;
     // background-color: #F7D3E8;
 
     img {
@@ -414,10 +434,14 @@ button {
 nav {
     background-color: white;
     box-shadow: 3px 3px 3px lightgray;
-    height: 65px;
+    // height: 65px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     z-index: 12;
+
+    @media only screen and (max-width: 1500px) {
+        height: 65px;
+    }
 
     a {
         text-decoration: none;
@@ -429,20 +453,13 @@ nav {
 
     .nav-logo {
         width: 30%;
-        display: block;
+        display: grid;
         height: inherit;
 
         img {
             width: 100%;
             display: block;
-        }
-
-        @media only screen and (max-width: 1300px) {
-            display: grid;  
-            
-            img {
-                align-self: center;
-            }
+            align-self: center;
         }
     }
 }

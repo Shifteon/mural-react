@@ -101,10 +101,13 @@ export const ArtworkFormModal = ({fromPrompt, newArtwork}) => {
         })
         .catch(error => {
           console.log(error);
+          const e = error.response.data;
+          console.log(e);
           Store.addNotification({
             ...notificationOptions,
             title: "Error Adding Artwork",
-            type: "error"
+            message: `${e.message}`,
+            type: "danger"
           });
         });
     }

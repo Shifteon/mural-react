@@ -48,7 +48,10 @@ export const Home = () => {
         </div>
         <div>
           {noArtwork &&
-            <h1 className="no-artwork" >No Artwork yet... Be the first to add some!</h1>
+          <div className="no-artwork">
+            <img src="/images/snorlax-small.png" />
+            <h1>No Artwork yet... Be the first to add some!</h1>
+          </div>
           }
           <ArtworkPanel artwork={artwork} />
         </div>
