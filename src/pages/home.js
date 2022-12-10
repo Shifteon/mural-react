@@ -58,10 +58,13 @@ export const Home = () => {
       </>
       :
       <>
+      <div className="not-loggedin">
         <h1 className="center" >Please login to see todays prompt</h1>
         <Link className="center" to="/login">Login</Link>
         <h2 className="center" >Or create an account</h2>
         <Link className="center" to="/signUp">Create Account</Link>
+        <img src="/images/snorlax-thumbs-up.png" />
+      </div>
       </>
     }
     </div>

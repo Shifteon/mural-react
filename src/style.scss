@@ -154,6 +154,15 @@ a {
     }
 }
 
+.not-loggedin {
+    display: grid;
+
+    img {
+        width: 20%;
+        justify-self: center;
+    }
+}
+
 .artwork-panel {
     width: 90%;
     margin: 1em auto;

@@ -71,16 +71,18 @@ const SignUp = () => {
       .catch(error => {
         console.log(error);
         const errors = error.response.data.data;
-        for (const e of errors) {
-          if (e.param == 'username') {
-            usernameRef.current.style = `border-color: red;`
+        if (errors) {
+          for (const e of errors) {
+            if (e.param == 'username') {
+              usernameRef.current.style = `border-color: red;`
+            }
+            Store.addNotification({
+              ...notificationOptions,
+              title: "Error Creating Account",
+              message: `${e.msg}`,
+              type: "danger"
+            });
           }
-          Store.addNotification({
-            ...notificationOptions,
-            title: "Error Creating Account",
-            message: `${e.msg}`,
-            type: "danger"
-          });
         }
       })
   };
