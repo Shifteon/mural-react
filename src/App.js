@@ -7,6 +7,7 @@ import SignUp from './pages/signUp';
 import Login from './pages/login';
 import { Logout } from './pages/logout';
 import { Profile } from './pages/profile';
+import { Artwork } from './pages/artwork';
 import './style.scss';
 import 'react-notifications-component/dist/theme.css';
 
@@ -27,6 +28,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/logout' element={<Logout />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/artwork' element={<Artwork />} />
     </Routes>
     </Router>
   )

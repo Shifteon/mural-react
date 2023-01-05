@@ -3,34 +3,17 @@ import axios from "axios";
 import { imgSrcUrl } from "../constants";
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { useOutsideClick } from "../hooks/outsideClick";
 
 export const Artwork = ({ artwork }) => {
   const [cookies] = useCookies("currentUser");
 
   const [url, setUrl] = React.useState('');
-  const [style, setStyle] = React.useState({});
   const [isShown, setIsShown] = React.useState(false);
   const [isTextShown, setIsTextShown] = React.useState(false);
-  const [showFullImage, setShowFullImage] = React.useState(false);
 
   React.useEffect(() => {
     getUrl();
   }, []);
-
-  const wrapperRef = React.useRef(null);
-  useOutsideClick(wrapperRef, () => {
-    setShowFullImage(false);
-    setStyle({});
-  });
-
-  const handleImageClick = () => {
-    setShowFullImage(true);
-    const position = window.pageYOffset;
-    setStyle({
-      top: `${position + 10}px`
-    });
-  }
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -49,13 +32,11 @@ export const Artwork = ({ artwork }) => {
   };
 
   return (
-    <div className={showFullImage ? "full-image" : "single-artwork"}
+    <div className="single-artwork"
       onMouseEnter={() => setIsShown(true)}
       onMouseLeave={() => { setIsShown(false); setIsTextShown(false) }}
-      ref={wrapperRef}
-      style={style}
     >
-      <img src={url} loading='lazy' onClick={handleImageClick} />
+      <Link to="/artwork" state={{artwork: artwork, url: url}}><img src={url} loading='lazy' alt='artwork' /></Link>
       <div    className={`${isShown ? 'display text' : 'text'}`} >
         <h1   className={`${isTextShown ? 'display' : ''}`} >{artwork.name}</h1>
         <p>{artwork.description}</p>
